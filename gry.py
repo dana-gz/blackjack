@@ -23,8 +23,13 @@ def ask_yes_no(question):
 def ask_number(question, low, high):
     """Poproś o podanie liczby z określonego zakresu."""
     response = None
-    while response not in range(low, high):
-        response = int(input(question))
+    while type(response) != int:
+        try:
+            response = int(input(question))
+            while response not in range(low, high):
+                response = int(input(question))
+        except ValueError:
+            print("Value must be a number")
     return response
 
 

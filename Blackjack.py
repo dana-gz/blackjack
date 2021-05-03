@@ -134,6 +134,11 @@ class BJGame(object):
             if player.is_busted():
                 player.bust()
 
+    def prepare(self):
+        self.deck.clear()
+        self.deck.populate()
+        self.deck.shuffle()
+
     def play(self):
         # rozdaj każdemu początkowe dwie karty
         self.deck.deal(self.players + [self.dealer], per_hand=2)
@@ -190,6 +195,7 @@ def main():
 
     again = None
     while again != "n":
+        game.prepare()
         game.play()
         again = gry.ask_yes_no("\nCzy chcesz zagrać ponownie?: ")
 
